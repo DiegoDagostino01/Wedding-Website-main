@@ -1,47 +1,54 @@
 ---
 name: Diego & Bethany Wedding
-description: A warm botanical wedding site for invited guests planning the day at Southdowns Manor.
+description: A fresh spring botanical wedding site for invited guests planning the day at Southdowns Manor.
 colors:
-  cream: "#FBF6EE"
-  cream-deep: "#F3EBDC"
-  ink: "#33361F"
-  sage: "#8FA07C"
-  sage-deep: "#5C6B44"
-  olive: "#6E7A45"
-  peach: "#E7B98D"
-  terracotta: "#C77F52"
-  mustard: "#CFA044"
-  dusty-blue: "#A9C1CE"
+  cream: "#EFF6FA"
+  cream-deep: "#DCEAF5"
+  cream-warm: "#E6F0F8"
+  ink: "#2E3220"
+  ink-soft: "#4A4C36"
+  sage: "#9AC47C"
+  sage-deep: "#45703A"
+  olive: "#5D9440"
+  forest: "#2C5327"
+  mist: "#ADBDAC"
+  peach: "#80A3C2"
+  gold: "#80A3C2"
+  mustard: "#80A3C2"
+  dusty-blue: "#80A3C2"
+  terracotta: "#43627E"
+  gold-deep: "#43627E"
+  champagne: "#EBF3F6"
 typography:
   display:
-    fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "clamp(3rem, 9vw, 6rem)"
-    fontWeight: 500
-    lineHeight: 0.98
-    letterSpacing: "-0.03em"
+    fontFamily: "Dancing Script, 'Segoe Script', cursive"
+    fontSize: "clamp(3.9rem, 11.5vw, 8rem)"
+    fontWeight: 600
+    lineHeight: 1.04
+    letterSpacing: "0"
   headline:
-    fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "clamp(2.2rem, 4.5vw, 3.2rem)"
-    fontWeight: 500
+    fontFamily: "Montserrat, system-ui, 'Segoe UI', Arial, sans-serif"
+    fontSize: "clamp(2.35rem, 4.9vw, 3.6rem)"
+    fontWeight: 600
     lineHeight: 1.1
     letterSpacing: "-0.02em"
   title:
-    fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "1.4rem"
+    fontFamily: "Montserrat, system-ui, 'Segoe UI', Arial, sans-serif"
+    fontSize: "clamp(1.6rem, 3vw, 2.05rem)"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "-0.02em"
   body:
-    fontFamily: "Jost, Arial, sans-serif"
+    fontFamily: "Montserrat, system-ui, 'Segoe UI', Arial, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.6
   label:
-    fontFamily: "Jost, Arial, sans-serif"
-    fontSize: "0.78rem"
-    fontWeight: 400
+    fontFamily: "Montserrat, system-ui, 'Segoe UI', Arial, sans-serif"
+    fontSize: "0.75rem"
+    fontWeight: 500
     lineHeight: 1.2
-    letterSpacing: "0.2em"
+    letterSpacing: "0.22em"
 rounded:
   xs: "3px"
   sm: "4px"
@@ -85,7 +92,7 @@ components:
 
 The system should feel like a personal invitation carried through a countryside garden: soft enough for a wedding, clear enough for guests who need practical details, and specific enough to belong to Diego and Bethany rather than to a generic wedding template. It uses botanical accents, restrained page rhythm, and a warm guest-first tone to make the site feel celebratory without losing utility.
 
-The visual language is already established in the static HTML: cream and deeper cream surfaces, sage structure, peach and terracotta warmth, Cormorant Garamond display type, Jost body copy, small botanical dividers, soft reveal motion, and ambient shadows. Preserve those choices unless a future task explicitly asks for a departure. The system rejects gray, flat, static interfaces and placeholder-heavy layouts that feel lifeless.
+The visual language is established in the static HTML: pale sky-blue paper surfaces, fresh spring-foliage greens for botanical structure, and a deeper spring-sky blue for accents and emphasis. Type is Montserrat throughout — headings and body — with Dancing Script reserved for the couple's names in the hero. Small botanical dividers, soft reveal motion, and ambient shadows complete the system. Preserve those choices unless a future task explicitly asks for a departure. The system rejects gray, flat, static interfaces and placeholder-heavy layouts that feel lifeless.
 
 **Key Characteristics:**
 - Warm practical pages for invited guests.
@@ -96,47 +103,54 @@ The visual language is already established in the static HTML: cream and deeper 
 
 ## 2. Colors
 
-The palette is a countryside botanical range: cream grounds, olive-green structure, and peach-to-terracotta warmth for invitation moments.
+The palette is a fresh countryside-spring range: pale sky-blue paper grounds, new-growth spring-foliage greens for botanical structure, and a deeper spring-sky blue for accents, actions, and emphasis. It reads as a bright April garden under an open sky rather than the earlier warm cream-and-terracotta scheme.
 
-### Primary
-- **Garden Ink** (#33361F): Primary text, focus contrast, and the grounding color for body copy.
-- **Pressed Terracotta** (#C77F52): Main emphasis color for names, hover accents, botanical marks, and warm section details.
+> **Legacy token names.** The CSS custom properties keep their original warm names (`--cream`, `--cream-deep`, `--cream-warm`, `--terracotta`, `--gold`, `--peach`, `--mustard`) for continuity, but they now hold cool values — the `--cream*` grounds are pale sky-blue and the accent tokens are spring-sky blue. Read tokens by role (below), not by name.
 
-### Secondary
-- **Southdowns Sage** (#8FA07C): Soft botanical color used in hero atmospherics, gradients, and supporting detail.
-- **Deep Sage** (#5C6B44): Darker green for readable secondary text, schedule structure, and the RSVP section background.
-- **Olive Stem** (#6E7A45): Botanical SVG strokes and quiet garden-line accents.
+### Grounds (Neutral)
+- **Invitation Sky** `--cream` (#EFF6FA): Main page background and the light text used on deeper accent surfaces (e.g. the accent-blue button on hover).
+- **Pressed Paper** `--cream-deep` (#DCEAF5): Alternating section background and soft card surface — a slightly deeper pale sky-blue.
+- **Soft Paper** `--cream-warm` (#E6F0F8): Subtle pale sky-blue fill for eyebrows and small surfaces.
 
-### Tertiary
-- **Petal Peach** (#E7B98D): Primary button background, RSVP labels, selection highlights, and warm floral details.
-- **Late-April Mustard** (#CFA044): Occasional gallery warmth only; use sparingly so it does not overpower the wedding palette.
-- **Fjord Blue** (#A9C1CE): Cool counterpoint in gradients and future proposal/gallery imagery.
+### Text
+- **Garden Ink** `--ink` (#2E3220): Primary text, focus contrast, and the grounding color for body copy.
+- **Soft Ink** `--ink-soft` (#4A4C36): Secondary text and the uppercase hero subtitle.
 
-### Neutral
-- **Invitation Cream** (#FBF6EE): Main page background and light text on dark sections.
-- **Pressed Paper** (#F3EBDC): Alternating section background and soft card surface.
+### Spring Foliage (Structure)
+- **Spring Sage** `--sage` (#9AC47C): Soft botanical color for hero atmospherics, gradients, and supporting detail.
+- **Deep Leaf** `--sage-deep` (#45703A): Darker green for readable secondary text and schedule structure.
+- **Olive Stem** `--olive` (#5D9440): Botanical SVG strokes and quiet garden-line accents.
+- **Forest** `--forest` (#2C5327): Deepest green for gradient ends and the RSVP success check.
+- **Pastel Mist** `--mist` (#ADBDAC): Soft pastel-green surface for the RSVP panel — a calm light section (dark ink text, blue accents) that gives the RSVP its own identity without over-using the accent blue.
+
+### Spring Sky (Accent & Emphasis)
+- **Sky Accent** `--peach` / `--gold` / `--mustard` / `--dusty-blue` (#80A3C2): The single accent blue — button backgrounds, labels, botanical marks, selection highlights, and gradients.
+- **Sky Emphasis** `--terracotta` / `--gold-deep` (#43627E): Deeper blue for emphasis text such as the couple's names, hover states, and prominent labels.
+- **Sky Tint** `--champagne` (#EBF3F6): Pale surface and text selection.
 
 ### Named Rules
-**The Guest-First Contrast Rule.** Body text stays close to Garden Ink or Invitation Cream; decorative pale text is not allowed to carry essential information.
+**The Guest-First Contrast Rule.** Body text stays close to Garden Ink or Invitation Sky; decorative pale text is not allowed to carry essential information.
 
-**The Warmth-with-Restraint Rule.** Petal Peach and Pressed Terracotta should feel earned. They mark action, romance, and botanical detail; they should not flood every component.
+**The Accent-with-Restraint Rule.** The spring-sky blue marks action, romance, and botanical detail; it should feel earned, not flood every component. Fresh greens carry structure; the blue carries emphasis.
 
 ## 3. Typography
 
-**Display Font:** Cormorant Garamond (with Georgia, serif fallback)
-**Body Font:** Jost (with Arial, sans-serif fallback)
+**Primary Font:** Montserrat (with system-ui, Segoe UI, Arial fallback) — used for headings and body.
+**Hero Script:** Dancing Script (with Segoe Script, cursive fallback) — reserved for the couple's names in the hero. It is the closest widely-available Google Font to the requested "Jimmy Script"; drop in the licensed face here if it is ever self-hosted.
 
-**Character:** Cormorant Garamond gives the page its invitation quality, especially in names, dates, and section titles. Jost keeps guest logistics practical, legible, and contemporary without turning the site into a formal stationery piece.
+**Character:** Montserrat carries the whole page in a single geometric-sans family, using weight and size for hierarchy (600 for headings, 400 for body) rather than a second text face. Dancing Script gives the couple's names their one handwritten, invitation-quality moment in the hero; everything else stays practical and legible.
 
 ### Hierarchy
-- **Display** (500, `clamp(3rem, 9vw, 6rem)`, 0.98): Hero names and the primary emotional introduction.
-- **Headline** (500, `clamp(2.2rem, 4.5vw, 3.2rem)`, about 1.1): Section titles such as story, day, travel, gallery, and RSVP.
-- **Title** (600, 1.15-1.8rem, about 1.2): Schedule names, card headings, venue title, and footer signature.
-- **Body** (400, 1rem-1.05rem, 1.6): Guest-facing explanatory copy, capped around 62ch in the current page.
-- **Label** (400, 0.7-0.85rem, 0.1-0.2em, uppercase): Navigation, form labels, tags, countdown labels, and occasional section identifiers.
+- **Hero names** (Dancing Script, 600, `clamp(3.9rem, 11.5vw, 8rem)`, ~1.04): Only "Diego & Bethany" in the hero.
+- **Headline** (Montserrat, 600, `clamp(2.35rem, 4.9vw, 3.6rem)`, ~1.1, -0.02em): Section titles such as story, day, travel, gallery, and RSVP.
+- **Title** (Montserrat, 600, `clamp(1.6rem, 3vw, 2.05rem)`, ~1.2): Schedule names, card headings, venue title, and footer signature.
+- **Body** (Montserrat, 400, 1rem, 1.6): Guest-facing explanatory copy, capped around 62ch in the current page.
+- **Label** (Montserrat, 500, 0.75rem, 0.22em, uppercase): Navigation, form labels, tags, countdown labels, and the hero date/venue subtitle.
 
 ### Named Rules
-**The Invitation-Not-Broadsheet Rule.** Use the serif for warmth and names, but do not turn every section into editorial magazine styling. Guest clarity wins over typographic display.
+**The One-Script-Moment Rule.** Dancing Script appears only on the couple's names in the hero. Everywhere else is Montserrat; don't scatter the script into section titles or accents, or it stops feeling special.
+
+**The Invitation-Not-Broadsheet Rule.** Lead with guest clarity; do not turn sections into editorial magazine styling. Hierarchy comes from Montserrat weight and size, not decoration.
 
 ## 4. Elevation
 
@@ -154,28 +168,28 @@ Components should feel warm, practical, and guest-first: ceremonial enough for t
 
 ### Buttons
 - **Shape:** Small radius, exact current value 3px.
-- **Primary:** Petal Peach background, Garden Ink text, uppercase Jost label, `15px 38px` padding.
-- **Hover / Focus:** Hover shifts to Pressed Terracotta with Invitation Cream text and a small upward translate. Focus uses a visible 2px outline with 3px offset.
+- **Primary:** Sky-accent blue (`--peach`, #80A3C2) background, Garden Ink text, uppercase Montserrat label, `15px 38px` padding.
+- **Hover / Focus:** Hover shifts to sky-emphasis blue (`--terracotta`, #43627E) with Invitation Sky text and a small upward translate. Focus uses a visible 2px outline with 3px offset.
 - **Secondary / Ghost / Tertiary:** Not currently defined. Future secondary buttons should use a full border or quiet text treatment, not side-stripe accents.
 
 ### Chips
-- **Style:** Small uppercase tags use Pressed Terracotta text on the surrounding surface, with no filled pill by default.
+- **Style:** Small uppercase tags use sky-emphasis blue (`--terracotta`, #43627E) text on the surrounding surface, with no filled pill by default.
 - **State:** Use for "Coming soon" and similar status labels; avoid making them compete with calls to action.
 
 ### Cards / Containers
 - **Corner Style:** 4px for image placeholders and gallery items, 6px for cards and venue containers.
-- **Background:** Pressed Paper for large content containers; Invitation Cream for smaller cards on Pressed Paper sections.
+- **Background:** Pressed Paper for large content containers; Invitation Sky for smaller cards on Pressed Paper sections.
 - **Shadow Strategy:** Ambient Paper Lift only on prominent cards or hover states.
 - **Border:** Use the existing `rgba(51,54,31,0.14)` line for schedule rows and travel cards.
 - **Internal Padding:** 32px for small cards, 44px for the venue card.
 
 ### Inputs / Fields
-- **Style:** Dark-section form fields use translucent cream fill, translucent cream border, 3px radius, and Jost body type.
-- **Focus:** Border shifts to Petal Peach and the fill becomes slightly stronger.
-- **Error / Disabled:** Not yet defined. Future states should retain readable contrast and avoid gray-only meaning.
+- **Style:** RSVP form fields sit on the pastel-mist panel with a translucent-white fill, hairline ink border, dark ink text, 10px radius, and Montserrat body type.
+- **Focus:** Border shifts to sky-emphasis blue with a soft sky-accent focus ring; the fill lightens slightly.
+- **Error / Disabled:** Invalid fields use a muted rose border and icon; text stays dark ink for readability (colour is never the only signal). Disabled not yet defined.
 
 ### Navigation
-- **Style:** Fixed top nav with translucent cream background, blur, botanical-warm hover underline, and compact uppercase Jost links.
+- **Style:** Fixed top nav with translucent cream background, blur, spring-accent hover underline, and compact uppercase Montserrat links.
 - **Mobile:** Links slide in as a right-side cream panel with Ambient Paper Lift. The menu toggle must keep its accessible label and visible focus state.
 
 ### Botanical Divider
@@ -186,8 +200,8 @@ The sprig SVG is the signature motif. Use it sparingly as a ceremonial divider o
 ### Do:
 - **Do** preserve the existing color tokens from `diego-bethany-wedding.html` when extending the page.
 - **Do** keep guest logistics easy to scan: schedule rows, travel cards, RSVP fields, and venue details should read quickly.
-- **Do** use Cormorant Garamond for names, emotional headlines, dates, and ceremonial accents.
-- **Do** use Jost for navigation, forms, labels, and practical body copy.
+- **Do** use Dancing Script only for the couple's names in the hero — the site's single script moment.
+- **Do** use Montserrat everywhere else: headings, navigation, forms, labels, and practical body copy.
 - **Do** support reduced motion and keep reveal content visible by default or safely recoverable.
 
 ### Don't:

@@ -14,11 +14,11 @@ This site is a single-page static wedding website for Diego and Bethany's 29 Apr
 
 ## Brand Personality
 
-Romantic, botanical, warm, personal, and countryside-refined. The voice should feel intimate and celebratory without becoming overly formal, generic, or decorative for its own sake.
+Romantic, botanical, fresh, personal, and countryside-refined, carried by a bright spring palette. The voice should feel intimate and celebratory without becoming overly formal, generic, or decorative for its own sake.
 
 ## Anti-references
 
-Avoid gray, flat, static interfaces. Avoid generic wedding templates, lifeless placeholder-heavy layouts, and styling that feels disconnected from the couple's story, the countryside venue, or the soft botanical palette already present in the site.
+Avoid gray, flat, static interfaces. Avoid generic wedding templates, lifeless placeholder-heavy layouts, and styling that feels disconnected from the couple's story, the countryside venue, or the fresh spring sky-blue and garden-green palette present in the site.
 
 ## Design Principles
 
