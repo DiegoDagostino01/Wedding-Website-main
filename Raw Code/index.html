@@ -62,18 +62,22 @@
     background-image:
       radial-gradient(1200px 760px at 6% 0%, rgba(128,163,194,0.10), transparent 62%),
       radial-gradient(1050px 720px at 100% 10%, rgba(150,190,120,0.10), transparent 62%),
+      linear-gradient(rgba(239,246,250,0.45), rgba(239,246,250,0.45)),
       var(--stripe-bg);
     background-repeat:
       no-repeat,
       no-repeat,
+      repeat,
       repeat;
     background-size:
       auto,
       auto,
-      520px auto;
+      auto,
+      1150px auto;
     background-attachment:
       scroll,
       scroll,
+      fixed,
       fixed;
     color: var(--ink);
     font-family: var(--font-sans);
@@ -130,7 +134,7 @@
     display: inline-flex;
     align-items: center;
     text-decoration: none;
-    width: clamp(58px, 7vw, 86px);
+    width: 80px;
     flex: none;
   }
 
@@ -715,6 +719,19 @@
     background: var(--cream);
   }
 
+  .gallery-slide.gallery-slide--contain{
+    background: linear-gradient(150deg, rgba(239,246,250,0.95), rgba(220,234,245,0.9));
+  }
+
+  .gallery-slide.gallery-slide--contain img.gallery-img-contain{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    padding: 0;
+    background: transparent;
+  }
+  
   .gallery-slide figcaption{
     position: absolute;
     left: 0;
@@ -1569,6 +1586,16 @@
   @keyframes veilDraw{ to{ stroke-dashoffset:0; } }
   @keyframes veilBloom{ from{ opacity:0; transform:scale(0.2); } to{ opacity:1; transform:scale(1); } }
   @keyframes veilRule{ to{ transform:scaleX(1); } }
+
+  /* Proposal image: show the full photo instead of cropping */
+  .gallery-slide.gallery-slide--contain img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    transform: scale(1.5);
+    background: linear-gradient(150deg, rgba(239,246,250,0.95), rgba(220,234,245,0.9)) !important;
+  }
 </style>
 <script>
   // Progressive enhancement: opt reveal elements into their hidden/animated state only
@@ -2165,17 +2192,16 @@
     <div class="reveal">
       <span class="eyebrow">Gallery</span>
       <h2 class="section-title serif">A Few Moments</h2>
-      <p>Photos to come — this is where we'll share pictures from our story and, eventually, the big day itself.</p>
     </div>
     <div class="gallery-carousel reveal" aria-label="Photo carousel">
       <button class="gallery-btn gallery-btn--prev" type="button" aria-label="Previous gallery image" aria-controls="galleryTrack">&#8592;</button>
       <div class="gallery-track" id="galleryTrack" tabindex="0">
-        <figure class="gallery-slide"><figcaption>Our Story</figcaption></figure>
-        <figure class="gallery-slide"><figcaption>The Proposal</figcaption></figure>
-        <figure class="gallery-slide"><figcaption>Together</figcaption></figure>
-        <figure class="gallery-slide"><figcaption>Fjords</figcaption></figure>
-        <figure class="gallery-slide"><figcaption>Family</figcaption></figure>
-        <figure class="gallery-slide"><figcaption>Friends</figcaption></figure>
+        <figure class="gallery-slide"><img src="Assets/Shadow-Photo.png" alt="Our Story"><figcaption>Our Story</figcaption></figure>
+        <figure class="gallery-slide gallery-slide--contain"><img src="Assets/Proposal.png" alt="The Proposal"><figcaption>The Proposal</figcaption></figure>
+        <figure class="gallery-slide"><img src="Assets/Vinyard.png" alt="Together"><figcaption>Together</figcaption></figure>
+        <figure class="gallery-slide"><img src="Assets/Waterfall.png" alt="Fjords"><figcaption>Fjords</figcaption></figure>
+        <figure class="gallery-slide"><img src="Assets/Family-Photo.png" alt="Family"><figcaption>Family</figcaption></figure>
+        <figure class="gallery-slide"><img src="Assets/Friends-Photo.png" alt="Friends"><figcaption>Friends</figcaption></figure>
       </div>
       <button class="gallery-btn gallery-btn--next" type="button" aria-label="Next gallery image" aria-controls="galleryTrack">&#8594;</button>
     </div>
