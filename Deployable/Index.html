@@ -40,7 +40,7 @@
 
     /* Typography — Montserrat throughout (headings + body), with a handwritten script reserved for the hero names */
     
-    --font-serif: 'Noto Serif Displa*', Georgia, serif;   /* sub-headin*s / section titles */
+    --font-serif: 'Noto Serif Display', Georgia, serif;   /* sub-headin*s / section titles */
     --font-accent: 'Noto Serif Display', Georgia, serif;  /* accents / italic-style te*t */
     --font-sans: 'Montserrat', system-ui, 'Segoe UI', Arial, sans-serif;    /* body text */
     --font-script: 'Great Vibes', 'Segoe Script', 'Brush Script MT', cursive; /* hero*names */
@@ -832,6 +832,186 @@
     background: linear-gradient(180deg, rgba(173,189,172,0), var(--mist));
 }
 
+/* ---------- Honeymoon Fund ---------- */
+  #honeymoon{
+    background: linear-gradient(180deg,
+      rgba(239,246,250,0.58) 0,
+      rgba(220,234,245,0.66) clamp(90px, 12vw, 150px),
+      rgba(220,234,245,0.66) calc(100% - clamp(90px, 12vw, 150px)),
+      rgba(239,246,250,0.58) 100%);
+  }
+  .honeymoon-head{
+    max-width: 680px; margin: 0 auto clamp(34px, 5vw, 52px); text-align: center;
+  }
+  .honeymoon-lead{
+    font-size: var(--text-lead); color: var(--ink-soft);
+    margin: 0 auto; max-width: 56ch; line-height: 1.62;
+  }
+  .honeymoon-experiences{
+    list-style: none; margin: 0 auto clamp(48px, 6vw, 72px); padding: 0;
+    max-width: 1000px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(18px, 2.4vw, 26px);
+  }
+  .exp-card{
+    position: relative; padding: 28px 24px;
+    background: linear-gradient(158deg, var(--cream-warm), rgba(255,255,255,0.7));
+    border: 1px solid var(--line-gold); border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
+  }
+  .exp-card:hover{
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+    border-color: rgba(128,163,194,0.55);
+  }
+  .exp-ico{
+    display: grid; place-items: center;
+    width: 46px; height: 46px; margin-bottom: 16px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(154,196,124,0.22), rgba(128,163,194,0.20));
+    color: var(--sage-deep);
+    border: 1px solid rgba(128,163,194,0.24);
+  }
+  .exp-ico svg{ width: 22px; height: 22px; }
+  .exp-title{
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 1.28rem; color: var(--ink);
+    margin-bottom: 8px; letter-spacing: -0.01em;
+  }
+  .exp-desc{
+    font-size: var(--text-body); line-height: 1.55;
+    color: var(--ink-soft); margin: 0;
+  }
+  .honeymoon-give{ max-width: 720px; margin: 0 auto; }
+  .give-card{
+    padding: clamp(30px, 4.5vw, 48px);
+    background: linear-gradient(158deg, rgba(255,255,255,0.72), var(--cream-deep));
+    border: 1px solid var(--line-gold); border-radius: 20px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .give-card > .eyebrow{ margin-bottom: 16px; }
+  .give-card > .serif{
+    font-size: var(--text-h3); margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .give-lead{
+    font-size: var(--text-lead); line-height: 1.62;
+    color: var(--ink-soft); margin: 0 auto clamp(28px, 3.5vw, 36px);
+    max-width: 48ch;
+  }
+
+  /* Primary CTA — echoes the RSVP submit button so the two "actions" on the page feel related */
+  .give-btn{
+    position: relative; display: inline-flex; align-items: center; justify-content: center;
+    gap: 14px; text-decoration: none;
+    background: var(--peach); color: var(--ink);
+    padding: 11px 12px 11px 34px;
+    font-family: var(--font-sans); font-size: 0.82rem;
+    letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500;
+    border-radius: 999px;
+    box-shadow: 0 16px 34px -16px rgba(67,98,126,0.5);
+    transition: transform 0.4s var(--ease-spring), background 0.4s var(--ease),
+                color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  }
+  .give-btn-icon{
+    width: 40px; height: 40px; border-radius: 50%; flex: none;
+    display: grid; place-items: center;
+    background: rgba(46,50,32,0.14); color: var(--ink);
+    transition: transform 0.4s var(--ease-spring), background 0.4s var(--ease), color 0.4s var(--ease);
+  }
+  .give-btn-icon svg{ width: 17px; height: 17px; }
+  .give-btn:hover{
+    background: var(--terracotta); color: var(--cream);
+    transform: translateY(-2px); box-shadow: var(--shadow-lift);
+  }
+  .give-btn:hover .give-btn-icon{
+    background: rgba(239,246,250,0.22); color: var(--cream);
+    transform: translate(3px, -2px) scale(1.06);
+  }
+  .give-btn:active{ transform: scale(0.985); }
+  .give-btn:focus-visible{ outline: 2px solid var(--ink); outline-offset: 3px; }
+  .give-alt{
+    font-size: var(--text-body); line-height: 1.55;
+    color: var(--ink-soft); margin: clamp(28px, 3.5vw, 36px) auto 0;
+    max-width: 44ch;
+    padding-top: clamp(22px, 3vw, 28px);
+    border-top: 1px solid var(--line-gold);
+  }
+  .give-note{
+    font-size: var(--text-meta); line-height: 1.55;
+    color: var(--gold-deep); margin: 14px auto 0;
+    max-width: 42ch; font-style: italic;
+  }
+  .give-card > .eyebrow{ margin-bottom: 16px; }
+  .give-card > .serif{
+    font-size: var(--text-h3); margin-bottom: clamp(22px, 3vw, 32px);
+    font-weight: 500;
+  }
+  .give-methods{
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(22px, 3vw, 32px);
+    margin-bottom: 24px;
+  }
+  .give-method{
+    padding: 22px; border-radius: 14px;
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--line);
+  }
+  .give-method-head{
+    display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+  }
+  .give-ico{
+    width: 26px; height: 26px; flex: none;
+    color: var(--sage-deep);
+  }
+  .give-method h4{
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 1.18rem; color: var(--ink); margin: 0;
+  }
+  .give-details{ margin: 0; padding: 0; display: grid; gap: 12px; }
+  .give-details > div{
+    display: grid; grid-template-columns: 110px 1fr;
+    gap: 10px; align-items: center;
+  }
+  .give-details dt{
+    font-size: var(--text-label); letter-spacing: var(--tracking-label);
+    text-transform: uppercase; color: var(--gold-deep); font-weight: 500;
+  }
+  .give-details dd{
+    margin: 0; font-family: var(--font-serif);
+    font-size: 1.05rem; color: var(--ink);
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  .copy-btn--sm{
+    padding: 5px 12px; font-size: 0.62rem;
+  }
+  .copy-btn--sm svg{ width: 12px; height: 12px; }
+  .give-desc{
+    font-size: var(--text-body); line-height: 1.6;
+    color: var(--ink-soft); margin: 0;
+  }
+  .give-note{
+    text-align: center; font-size: var(--text-body);
+    color: var(--ink-soft); margin: 8px auto 0;
+    max-width: 44ch; line-height: 1.55;
+  }
+  @media (max-width: 640px){
+    .give-methods{ grid-template-columns: 1fr; }
+    .give-details > div{ grid-template-columns: 1fr; gap: 4px; }
+  }
+  /* Reveal — same pattern as your other sections */
+  @media (prefers-reduced-motion: no-preference){
+    #honeymoon.js-reveal [data-hm]{
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+    }
+    #honeymoon.js-reveal [data-hm].in{ opacity: 1; transform: none; }
+  }
+
+
   /* ---------- FAQ ---------- */
   #faq{
     background: linear-gradient(180deg,
@@ -988,6 +1168,112 @@
   }
   .field .opt{ text-transform:none; letter-spacing:0; color: rgba(46,50,32,0.82); font-weight: 400; }
   .field-hint{ font-size: var(--text-meta); color: rgba(46,50,32,0.85); margin: 0; line-height: 1.45; }
+
+  /* ---------- Guest Picker (RSVP name dropdown) ---------- */
+  .guest-picker{ position: relative; }
+  .guest-picker-input{
+    width: 100%;
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(46,50,32,0.22);
+    border-radius: 10px;
+    padding: 14px 44px 14px 16px;
+    height: 54px;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 0.98rem;
+    transition: border-color 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2343627E' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+  .guest-picker-input:focus-visible{
+    outline: none;
+    border-color: var(--terracotta);
+    box-shadow: 0 0 0 3px rgba(128,163,194,0.32);
+  }
+  .guest-picker-input[aria-invalid="true"]{
+    border-color: #C25B6E;
+    box-shadow: 0 0 0 3px rgba(194,91,110,0.20);
+  }
+  .guest-picker-list{
+    position: absolute;
+    left: 0; right: 0;
+    top: calc(100% + 8px);
+    z-index: 60;
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+    max-height: 260px;
+    overflow-y: auto;
+    border: 1px solid var(--line-gold);
+    border-radius: 16px;
+    background: linear-gradient(160deg, rgba(239,246,250,0.98), rgba(220,234,245,0.96));
+    box-shadow:
+      0 26px 60px -30px rgba(46,50,32,0.55),
+      inset 0 1px 0 rgba(255,255,255,0.72);
+  }
+  .guest-picker-list[hidden]{ display: none; }
+  .guest-picker-list li{
+    position: relative;
+    cursor: pointer;
+    padding: 12px 44px 12px 14px;
+    border-radius: 10px;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 0.98rem;
+    line-height: 1.35;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    transition:
+      background 0.22s var(--ease),
+      color 0.22s var(--ease),
+      transform 0.22s var(--ease);
+  }
+  .guest-picker-list li:hover,
+  .guest-picker-list li.is-active{
+    background: linear-gradient(135deg, rgba(128,163,194,0.20), rgba(154,196,124,0.18));
+    color: var(--ink);
+    transform: translateX(2px);
+  }
+  .guest-picker-list li.is-responded{
+    opacity: 0.55;
+    font-style: italic;
+  }
+  .guest-picker-list li .picker-tag{
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    background: rgba(154,196,124,0.22);
+    padding: 3px 9px;
+    border-radius: 999px;
+    flex: none;
+    font-style: normal;
+  }
+  .guest-picker-list .picker-empty{
+    padding: 14px;
+    color: rgba(46,50,32,0.7);
+    font-style: italic;
+    text-align: center;
+    cursor: default;
+    display: block;
+    list-style: none;
+  }
+  .guest-picker-list .picker-empty:hover{
+    background: transparent;
+    transform: none;
+  }
+  .field-note{
+    font-size: var(--text-meta);
+    color: rgba(46,50,32,0.82);
+    margin: 6px 0 0;
+    line-height: 1.5;
+  }
+  .field-note[hidden]{ display: none; }
+  .field-note a{ color: var(--terracotta); text-underline-offset: 2px; }
 
   .field input, .field textarea, .field select, .guest-input{
     width:100%; background: rgba(255,255,255,0.55); border: 1px solid rgba(46,50,32,0.22); border-radius: 10px;
@@ -1189,6 +1475,7 @@
   /* Party details — collapses on decline */
   .rsvp-party{ display:grid; grid-template-rows: 1fr; }
   .rsvp-party-inner{ overflow:visible; min-height:0; display:grid; gap: 22px; }
+  .rsvp-party.collapsed .rsvp-party-inner{ overflow: hidden; }
   .rsvp-party.collapsed{ grid-template-rows: 0fr; opacity: 0; margin-top: -22px; }
   @media (prefers-reduced-motion: no-preference){
     .rsvp-party{ transition: grid-template-rows 0.5s var(--ease), opacity 0.35s var(--ease), margin-top 0.5s var(--ease); }
@@ -1593,7 +1880,6 @@
     height: 100% !important;
     object-fit: contain !important;
     object-position: center center !important;
-    transform: scale(1.5);
     background: linear-gradient(150deg, rgba(239,246,250,0.95), rgba(220,234,245,0.9)) !important;
   }
 </style>
@@ -1849,6 +2135,7 @@
     <li><a href="#details" data-close>Event Details</a></li>
     <li><a href="#travel" data-close>Travel</a></li>
     <li><a href="#gallery" data-close>Gallery</a></li>
+    <li><a href="#honeymoon" data-close>Honeymoon</a></li>
     <li><a href="#faq" data-close>FAQ</a></li>
     <li><a href="#rsvp" data-close>RSVP</a></li>
   </ul>
@@ -2208,6 +2495,51 @@
   </div>
 </section>
 
+<!-- HONEYMOON FUND -->
+<section id="honeymoon">
+  <div class="section-inner">
+    <div class="divider">
+      <svg class="sprig" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 55 C 60 40, 40 30, 20 20" stroke="#5D9440" stroke-width="1.5"/>
+        <path d="M60 55 C 60 40, 80 30, 100 20" stroke="#5D9440" stroke-width="1.5"/>
+        <ellipse cx="20" cy="18" rx="7" ry="4" fill="#86B463" transform="rotate(-30 20 18)"/>
+        <ellipse cx="100" cy="18" rx="7" ry="4" fill="#86B463" transform="rotate(30 100 18)"/>
+        <ellipse cx="60" cy="10" rx="6" ry="9" fill="#80A3C2"/>
+      </svg>
+    </div>
+    <div class="honeymoon-head" data-hm>
+      <span class="eyebrow">With Love</span>
+      <h2 class="section-title serif">Honeymoon Fund</h2>
+      <p class="honeymoon-lead">
+        Your presence on the day is truly the greatest gift. But for anyone who'd like to give a little something more, we're saving up for our honeymoon — and any contribution, however small, would help make it unforgettable.
+      </p>
+    </div>
+    <div class="honeymoon-give" data-hm>
+      <div class="give-card">
+        <span class="eyebrow">How to Contribute</span>
+        <h3 class="serif">Add to the Adventure</h3>
+        <p class="give-lead">
+          We've set up a honeymoon fund where you can contribute directly. Just a click and a little.
+        </p>
+        <a class="give-btn" href="https://prezola.com/buy/view/336224" target="_blank" rel="noopener noreferrer">
+          <span class="give-btn-label">Contribute to Our Honeymoon</span>
+          <span class="give-btn-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/>
+              <path d="M13 6l6 6-6 6"/>
+            </svg>
+          </span>
+          <span class="sr-only">(opens in a new tab)</span>
+        </a>
+        <p class="give-alt">
+          Prefer to give on the day? There'll be a little postbox at the reception for cards and envelopes.
+        </p>
+        <p class="give-note">Please don't feel any obligation. Being with us on the day is truly enough. 💐</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section id="faq">
   <div class="section-inner">
@@ -2286,9 +2618,33 @@
     <form class="rsvp-form" id="rsvpForm" novalidate data-rv>
       <div class="field-row">
         <div class="field">
-          <label for="rsvp-name">Full name</label>
-          <input id="rsvp-name" name="name" type="text" autocomplete="name" placeholder="Your name" required aria-required="true" aria-describedby="rsvp-name-err">
-          <p class="field-err" id="rsvp-name-err" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg><span>Please add your name.</span></p>
+          <label for="guest-picker-input">Find your name</label>
+          <div class="guest-picker" id="guestPicker">
+            <input
+              id="guest-picker-input"
+              class="guest-picker-input"
+              type="text"
+              autocomplete="off"
+              placeholder="Start typing your name…"
+              role="combobox"
+              aria-expanded="false"
+              aria-controls="guest-picker-list"
+              aria-autocomplete="list"
+              required
+              aria-required="true"
+              aria-describedby="rsvp-name-err guest-picker-hint"
+            >
+            <input type="hidden" id="rsvp-name" name="name" value="">
+            <ul class="guest-picker-list" id="guest-picker-list" role="listbox" hidden></ul>
+          </div>
+          <p class="field-hint" id="guest-picker-hint">Type at least 4 letters of your name — we'll do the rest.</p>
+          <p class="field-err" id="rsvp-name-err" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg>
+            <span>Please pick your name from the list.</span>
+          </p>
+          <p class="field-note" id="guest-not-found" hidden>
+            Can't find your name? <a href="mailto:Diego.beth21@gmail.com?subject=Wedding RSVP">Email us</a> and we'll add you.
+          </p>
         </div>
         <div class="field">
           <label for="rsvp-email">Email</label>
@@ -2316,20 +2672,28 @@
 
       <div class="rsvp-party" id="rsvpParty">
         <div class="rsvp-party-inner">
-          <div class="field">
-            <label id="guests-label" for="guest-0">Who's coming with you?</label>
-            <p class="field-hint" id="guests-hint">If your invitation includes a guest, add their full name here. Coming solo? Leave this empty.</p>
-            <div class="guest-list" id="guestList" role="group" aria-labelledby="guests-label" aria-describedby="guests-hint">
-              <div class="guest-row">
-                <input id="guest-0" type="text" name="guest" class="guest-input" placeholder="Guest's full name" autocomplete="off" aria-label="Guest name">
-              </div>
+          <div class="field" id="partnerField" hidden>
+            <label id="partner-label">Will your plus-one be joining you?</label>
+            <p class="field-hint" id="partner-hint">
+              Your invitation includes <strong id="partner-name"></strong>.
+            </p>
+            <div class="attend-options" role="radiogroup" aria-labelledby="partner-label">
+              <label class="attend-opt">
+                <input type="radio" name="partnerAttending" value="yes" checked>
+                <span class="dot" aria-hidden="true"></span>
+                <span>Yes, together</span>
+              </label>
+              <label class="attend-opt">
+                <input type="radio" name="partnerAttending" value="no">
+                <span class="dot" aria-hidden="true"></span>
+                <span>No, just me</span>
+              </label>
             </div>
-            <button type="button" class="guest-add" id="guestAdd" hidden>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-              Add another guest
-            </button>
-            <p class="guest-note" id="guestNote" hidden>Only one guest can be added through this RSVP.</p>
           </div>
+          <p class="field-note" id="soloNote" hidden>This invitation is for one — but you'll be very welcome. 💐</p>
+          <p class="field-note" id="alreadyRepliedNote" hidden>
+            Someone from your party has already replied. If you need to change your answer, please VP%20change">email us</a>.
+          </p>
           <div class="field-row">
             <div class="field">
               <label id="dietary-label" for="dietary-trigger">Dietary requirements</label>
@@ -2543,6 +2907,24 @@
     setTimeout(revealAllDr, 2600);
   }
 
+  // Honeymoon — safe scroll reveal
+  const honeymoonSection = document.getElementById('honeymoon');
+  if (honeymoonSection && 'IntersectionObserver' in window &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const hmEls = Array.from(honeymoonSection.querySelectorAll('[data-hm]'));
+    honeymoonSection.classList.add('js-reveal');
+    const revealHm = el => el.classList.add('in');
+    const hmObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { revealHm(entry.target); hmObserver.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    hmEls.forEach(el => hmObserver.observe(el));
+    const revealAllHm = () => hmEls.forEach(revealHm);
+    window.addEventListener('load', () => setTimeout(revealAllHm, 1000), { once: true });
+    setTimeout(revealAllHm, 2600);
+  }
+
   // FAQ — safe scroll reveal
   const faqSection = document.getElementById('faq');
   if (faqSection && 'IntersectionObserver' in window &&
@@ -2600,11 +2982,20 @@
     // ── Connect responses ──────────────────────────────────────────────
     // Paste the Google Apps Script Web App URL (ends in /exec) between the
     // quotes to go live. While empty, the form runs in preview mode.
+    
     const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzyGZG01id0VhLFkjGRDnaNHNZgHoKV2Kuj5-jA1JhYq87rOsoCjlXliChsdt3uLWjw/exec';
     const CONTACT = 'Diego.beth21@gmail.com';
-    const MAX_GUESTS = 1; // additional guests beyond the person replying
+    const nameInput = document.getElementById('rsvp-name');          // hidden — holds chosen name
+    const pickerInput = document.getElementById('guest-picker-input');
+    const pickerList = document.getElementById('guest-picker-list');
+    const pickerNotFound = document.getElementById('guest-not-found');
+    const partnerField = document.getElementById('partnerField');
+    const partnerNameEl = document.getElementById('partner-name');
+    const soloNote = document.getElementById('soloNote');
+    const alreadyRepliedNote = document.getElementById('alreadyRepliedNote');
+    let GUEST_LIST = [];
+    let selectedGuest = null;
 
-    const nameInput = document.getElementById('rsvp-name');
     const emailInput = document.getElementById('rsvp-email');
     const party = document.getElementById('rsvpParty');
     const guestList = document.getElementById('guestList');
@@ -2644,44 +3035,146 @@
       party.toggleAttribute('inert', declining);
       party.setAttribute('aria-hidden', String(declining));
       party.querySelectorAll('input').forEach(i => { i.disabled = declining; });
+      if(selectedGuest){
+        if(selectedGuest.partner) partnerField.hidden = declining;
+        else soloNote.hidden = declining;
+      }
     }
+
     form.querySelectorAll('input[name="attending"]').forEach(i => i.addEventListener('change', syncAttendance));
     syncAttendance();
 
-    // ── Dynamic guest rows ──
-    const guestRows = () => Array.from(guestList.querySelectorAll('.guest-row'));
-    function relabel(){
-      guestRows().forEach((row, i) => {
-        const input = row.querySelector('.guest-input');
-        const btn = row.querySelector('.guest-remove');
-        input.setAttribute('aria-label', 'Guest ' + (i + 1) + ' name');
-        if(btn) btn.setAttribute('aria-label', 'Remove guest ' + (i + 1));
+    // ── Load the guest list from the sheet ──
+    async function loadGuests(){
+      try {
+        const res = await fetch(RSVP_ENDPOINT, { method: 'GET' });
+        const data = await res.json();
+        GUEST_LIST = data.guests || [];
+      } catch (err) {
+        console.warn('Could not load guest list — falling back to free-text.', err);
+        pickerInput.setAttribute('placeholder', 'Your full name');
+        pickerNotFound.hidden = true;
+      }
+    }
+    loadGuests();
+
+    // ── Guest picker (searchable dropdown) ──
+    function normaliseName(s){ return (s || '').trim().toLowerCase(); }
+
+    function findGuest(name){
+      const q = normaliseName(name);
+      return GUEST_LIST.find(g => normaliseName(g.name) === q);
+    }
+
+    function renderPickerResults(query){
+      const q = normaliseName(query);
+      const matches = q
+        ? GUEST_LIST.filter(g => normaliseName(g.name).includes(q))
+        : GUEST_LIST;
+
+      pickerList.innerHTML = '';
+      if(matches.length === 0){
+        const li = document.createElement('li');
+        li.className = 'picker-empty';
+        li.textContent = 'No match — check the spelling, or use the link below.';
+        pickerList.appendChild(li);
+        pickerNotFound.hidden = false;
+        pickerList.hidden = false;
+        pickerInput.setAttribute('aria-expanded', 'true');
+        return;
+      }
+
+      pickerNotFound.hidden = true;
+      matches.slice(0, 40).forEach((g, i) => {
+        const li = document.createElement('li');
+        li.setAttribute('role', 'option');
+        li.dataset.name = g.name;
+        if(i === 0) li.classList.add('is-active');
+        if(g.responded) li.classList.add('is-responded');
+        li.innerHTML = `<span>${g.name}</span>${g.responded ? '<span class="picker-tag">RSVP’d</span>' : ''}`;
+        li.addEventListener('mousedown', (e) => { e.preventDefault(); pickGuest(g); });
+        pickerList.appendChild(li);
       });
+      pickerList.hidden = false;
+      pickerInput.setAttribute('aria-expanded', 'true');
     }
-    function refreshGuestControls(){
-      // Only one guest field is allowed, so the add button should always stay hidden.
-      guestAdd.hidden = true;
-      guestNote.hidden = true;
+
+    function pickGuest(g){
+      selectedGuest = g;
+      pickerInput.value = g.name;
+      nameInput.value = g.name;
+      pickerList.hidden = true;
+      pickerInput.setAttribute('aria-expanded', 'false');
+      pickerInput.setAttribute('aria-invalid', 'false');
+      document.getElementById('rsvp-name-err').hidden = true;
+
+      // Handle partner
+      const declining = isDeclining();
+      if(g.partner){
+        partnerNameEl.textContent = g.partner;
+        partnerField.hidden = declining;
+        soloNote.hidden = true;
+      } else {
+        partnerField.hidden = true;
+        soloNote.hidden = declining;
+      }
+
+      // If they've already replied, gently flag it
+      alreadyRepliedNote.hidden = !g.responded;
     }
-    guestAdd.addEventListener('click', () => {
-      if(guestRows().length >= MAX_GUESTS) return;
-      const row = document.createElement('div');
-      row.className = 'guest-row entering';
-      row.addEventListener('animationend', () => row.classList.remove('entering'), { once:true });
-      const input = document.createElement('input');
-      input.type = 'text'; input.name = 'guest'; input.className = 'guest-input';
-      input.placeholder = "Guest's full name"; input.autocomplete = 'off';
-      const btn = document.createElement('button');
-      btn.type = 'button'; btn.className = 'guest-remove';
-      btn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
-      btn.addEventListener('click', () => { row.remove(); relabel(); refreshGuestControls(); guestAdd.focus(); });
-      row.append(input, btn);
-      guestList.appendChild(row);
-      relabel();
-      refreshGuestControls();
-      input.focus();
+
+    const MIN_CHARS = 4;
+    pickerInput.addEventListener('focus', () => {
+      if (pickerInput.value.trim().length >= MIN_CHARS) {
+        renderPickerResults(pickerInput.value);
+      }
     });
-    refreshGuestControls();
+    pickerInput.addEventListener('input', () => {
+      selectedGuest = null;
+      nameInput.value = '';
+      if (pickerInput.value.trim().length >= MIN_CHARS) {
+        renderPickerResults(pickerInput.value);
+      } else {
+        pickerList.hidden = true;
+        pickerInput.setAttribute('aria-expanded', 'false');
+        pickerNotFound.hidden = true;
+      }
+    });
+    
+    pickerInput.addEventListener('keydown', (e) => {
+      const items = Array.from(pickerList.querySelectorAll('li[role="option"]'));
+      const activeIdx = items.findIndex(li => li.classList.contains('is-active'));
+      if(e.key === 'ArrowDown'){
+        e.preventDefault();
+        if(items.length){
+          items.forEach(li => li.classList.remove('is-active'));
+          items[Math.min(activeIdx + 1, items.length - 1)].classList.add('is-active');
+          items[Math.min(activeIdx + 1, items.length - 1)].scrollIntoView({ block: 'nearest' });
+        }
+      } else if(e.key === 'ArrowUp'){
+        e.preventDefault();
+        if(items.length){
+          items.forEach(li => li.classList.remove('is-active'));
+          items[Math.max(activeIdx - 1, 0)].classList.add('is-active');
+          items[Math.max(activeIdx - 1, 0)].scrollIntoView({ block: 'nearest' });
+        }
+      } else if(e.key === 'Enter'){
+        if(!pickerList.hidden && items[activeIdx]){
+          e.preventDefault();
+          const g = GUEST_LIST.find(x => x.name === items[activeIdx].dataset.name);
+          if(g) pickGuest(g);
+        }
+      } else if(e.key === 'Escape'){
+        pickerList.hidden = true;
+        pickerInput.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if(!document.getElementById('guestPicker').contains(e.target)){
+        pickerList.hidden = true;
+        pickerInput.setAttribute('aria-expanded', 'false');
+      }
+    });
 
     // ── Custom styled dropdowns ──
     function initCustomSelects(){
@@ -2804,14 +3297,15 @@
     }
     function validate(){
       let firstInvalid = null;
-      const nameOk = nameInput.value.trim().length > 0;
-      setError(nameInput, 'rsvp-name-err', !nameOk);
-      if(!nameOk) firstInvalid = firstInvalid || nameInput;
+      const nameOk = !!selectedGuest && nameInput.value.trim().length > 0;
+      setError(pickerInput, 'rsvp-name-err', !nameOk);
+      if(!nameOk) firstInvalid = firstInvalid || pickerInput;
       const emailOk = emailRe.test(emailInput.value.trim());
       setError(emailInput, 'rsvp-email-err', !emailOk);
       if(!emailOk) firstInvalid = firstInvalid || emailInput;
       return firstInvalid;
     }
+
     nameInput.addEventListener('blur', () => { if(nameInput.getAttribute('aria-invalid') === 'true') setError(nameInput, 'rsvp-name-err', nameInput.value.trim().length === 0); });
     nameInput.addEventListener('input', () => { if(nameInput.getAttribute('aria-invalid') === 'true' && nameInput.value.trim()) setError(nameInput, 'rsvp-name-err', false); });
     emailInput.addEventListener('blur', () => { if(emailInput.getAttribute('aria-invalid') === 'true') setError(emailInput, 'rsvp-email-err', !emailRe.test(emailInput.value.trim())); });
@@ -2824,23 +3318,24 @@
     }
     function collect(){
       const declining = isDeclining();
-      const guests = declining ? [] : guestRows()
-        .map(r => r.querySelector('.guest-input').value.trim()).filter(Boolean);
+      const partnerRadio = form.querySelector('input[name="partnerAttending"]:checked');
+      const partnerComing = !declining && selectedGuest && selectedGuest.partner
+        && partnerRadio && partnerRadio.value === 'yes';
       return {
         submission_id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + '-' + Math.random().toString(16).slice(2),
         name: nameInput.value.trim(),
         email: emailInput.value.trim(),
         attending: declining ? 'Regretfully declines' : 'Joyfully accepts',
-        party_size: declining ? '0' : String(1 + guests.length),
-        guests: guests.join(', '),
+        party_size: declining ? '0' : String(1 + (partnerComing ? 1 : 0)),
+        guests: partnerComing ? selectedGuest.partner : '',
         dietary: declining ? '' : document.getElementById('rsvp-dietary').value.trim(),
         song: declining ? '' : document.getElementById('rsvp-song').value.trim(),
         message: document.getElementById('rsvp-message').value.trim(),
         submitted_at: new Date().toISOString(),
-        user_agent: navigator.userAgent,
-        website: document.getElementById('rsvp-website')?.value || ''
+        user_agent: navigator.userAgent
       };
     }
+
     async function send(data){
       if(!RSVP_ENDPOINT){
         console.info('[RSVP preview] would submit:', data);
