@@ -6,7 +6,7 @@
 <title>Diego &amp; Bethany — 29 April 2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap">
 <style>
   :root{
     --stripe-bg: url("Assets/save-the-date.png");
@@ -37,7 +37,12 @@
     --shadow-lift: 0 40px 90px -46px rgba(58,48,22,0.42);
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-
+    
+    /* Warm accent — the single note of warmth against the cool chrome. Sampled from the spring bouquet (blush garden rose). Use sparingly. */
+    --warm: #F0B49E; /* blush-coral — primary warm accent */
+    --warm-deep: #D98368; /* deeper blush — hover / emphasis */
+    --warm-soft: rgba(232,135,155,0.16); /* tint for glows & fills */
+    
     /* Typography — Montserrat throughout (headings + body), with a handwritten script reserved for the hero names */
     
     --font-serif: 'Noto Serif Display', Georgia, serif;   /* sub-headin*s / section titles */
@@ -53,6 +58,8 @@
     --text-meta: 0.875rem;                        /* 14px — secondary metadata & hints */
     --text-label: 0.75rem;                        /* 12px — uppercase labels */
     --tracking-label: 0.22em;                     /* consistent all-caps tracking */
+    --mx:0;
+    --my:0;
   }
 
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -149,7 +156,7 @@
   .nav-links a:hover{ color: var(--ink); }
   .nav-links a::after{
     content:''; position:absolute; left:0; bottom:0; width:0; height:1.5px; border-radius:2px;
-    background: linear-gradient(90deg, var(--gold), var(--terracotta));
+    background: linear-gradient(90deg, var(--warm), var(--warm-deep));
     transition: width 0.4s var(--ease);
   }
   .nav-links a:hover::after{ width:100%; }
@@ -171,32 +178,50 @@
     min-height: 100svh; display: flex; flex-direction: column;
     align-items: center; justify-content: flex-end; text-align: center;
     padding: 120px 6vw clamp(74px, 9vh, 98px);
+    perspective:3000px;
   }
   .hero-img{
     position: absolute; inset: 0; z-index: 0;
     width: 100%; height: 100%; object-fit: cover; object-position: 50% 46%;
     transform: scale(1.03);
-    opacity: 0.70;
+    opacity: 1;
   }
+
+  @media (max-width: 640px){
+    .hero-img{ object-position: 62% 42%; }
+  }
+
   .hero-scrim{
     position: absolute; inset: 0; z-index: 1; pointer-events: none;
     background:
+    /* 1 · Bottom legibility wash — only rises through the lower third, where the names, sub-line and countdown sit. */
       linear-gradient(to top,
         rgba(239,246,250,0.97) 0%,
-        rgba(239,246,250,0.90) 20%,
-        rgba(239,246,250,0.64) 36%,
-        rgba(239,246,250,0.28) 50%,
-        rgba(239,246,250,0.07) 66%,
-        transparent 82%),
-      radial-gradient(130% 66% at 50% 2%, rgba(46,50,32,0.13), transparent 56%);
+        rgba(239,246,250,0.90) 14%,
+        rgba(239,246,250,0.64) 28%,
+        rgba(239,246,250,0.28) 42%,
+        rgba(239,246,250,0.07) 54%,
+        transparent 66%),
+       
+      /* 2 · Soft focal pool feathered behind the text block, so contrast is highest right under the script names without touching the sky. */
+      radial-gradient(120% 60% at 50% 106%, rgba(239,246,250,0.55), transparent 62%),
+
+      /* 3 · A whisper of top vignette to seat the nav — far lighter than before. */
+      radial-gradient(120% 48% at 50% 0%, rgba(46,50,32,0.09), transparent 58%);
   }
+
   /* Formal invitation frame — a hairline gold mat inset from the edges */
   .hero-frame{
-    position:absolute; inset: clamp(14px, 2.4vw, 30px); z-index: 2; pointer-events:none;
-    border: 1px solid rgba(128,163,194,0.55); border-radius: 3px;
-    box-shadow: inset 0 0 0 1px rgba(239,246,250,0.30);
+      position:absolute;
+      inset:clamp(14px,2.4vw,30px);
+      z-index:2;
+      transform-style:preserve-3d;
+      transition:
+          transform 0.2s ease-out;
+      border:1px solid rgba(128,163,194,0.55);
+      border-radius:3px;
   }
-  .hero-content{ position: relative; z-index: 3; max-width: 940px; }
+  .hero-content{ position: relative; z-index: 3; max-width: 940px; transform-style: preserve-3d; will-change: transform; transition: transform 0.15s ease-out}
   .hero-eyebrow{
     display: inline-flex; align-items: center; gap: 14px;
     font-size: 0.76rem; letter-spacing: 0.34em; text-transform: uppercase; font-weight: 500;
@@ -213,6 +238,7 @@
     font-size: clamp(3.9rem, 11.5vw, 8rem); line-height: 1.04; letter-spacing: 0;
     color: var(--ink); text-wrap: balance; text-shadow: 0 2px 30px rgba(239,246,250,0.66);
     font-weight: 300;
+    transform:translateZ(80px);
   }
   .hero-title em{ font-style: normal; color: var(--terracotta); font-weight: 600; }
   .hero-title .ampersand{
@@ -224,6 +250,7 @@
     font-family: var(--font-accent); font-style: normal; font-size: clamp(0.92rem, 1.6vw, 1.12rem);
     text-transform: uppercase; letter-spacing: 0.14em; font-weight: 500;
     color: var(--ink-soft); text-shadow: 0 1px 12px rgba(239,246,250,0.9);
+    transform:translateZ(40px);
   }
 
   @keyframes rise{ from{opacity:0; transform: translateY(18px);} to{opacity:1; transform:translateY(0);} }
@@ -236,7 +263,20 @@
     background: linear-gradient(rgba(239,246,250,0.52), rgba(239,246,250,0.26));
     border: 1px solid var(--line-gold);
     box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255,255,255,0.5);
+    transform:translateZ(140px);
+    transition:
+    transform 0.2s ease-out,
+    box-shadow 0.2s ease-out;
   }
+
+  .countdown:hover{
+      transform:
+          translateZ(180px)
+          translateY(-6px);
+      box-shadow:
+          0 35px 70px rgba(0,0,0,0.18);
+  }
+
   .countdown .unit{
     text-align: center; min-width: clamp(56px, 12vw, 80px);
     padding: 13px clamp(9px, 1.7vw, 18px); border-radius: 11px;
@@ -255,7 +295,7 @@
   }
 
   .scroll-cue{
-    position: absolute; bottom: 22px; left: 0; right: 0; margin: 0 auto; width: fit-content; z-index: 4;
+    position: absolute; bottom: 12px; left: 0; right: 0; margin: 0 auto; width: fit-content; z-index: 4;
     font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-deep);
     display: flex; flex-direction: column; align-items: center; gap: 8px;
   }
@@ -291,6 +331,8 @@
   section{ padding: clamp(56px, 6.4vw, 92px) 6vw; position:relative; }
   .section-inner{ max-width: 1080px; margin: 0 auto; }
   .divider{ display:flex; justify-content:center; margin: 0 0 clamp(26px, 3.4vw, 42px); }
+.divider--stem .sprig{ width: 84px; opacity: 0.9; }
+.divider--bloom .sprig{ width: 132px; opacity: 0.9; }
 
   .eyebrow{
     display: inline-flex; align-items: center; gap: 9px;
@@ -303,7 +345,7 @@
   }
   .eyebrow::before{
     content:''; width: 5px; height: 5px; border-radius: 50%;
-    background: var(--gold); box-shadow: 0 0 0 3px rgba(128,163,194,0.22);
+    background: var(--warm); box-shadow: 0 0 0 3px var(--warm-soft);
   }
   .section-title{ font-size: var(--text-h2); margin-bottom: 28px; text-wrap: balance; font-weight: 400; line-height: 1.04; }
 
@@ -324,7 +366,7 @@
       rgba(220,234,245,0.66) clamp(90px, 12vw, 150px),
       rgba(220,234,245,0.66) calc(100% - clamp(90px, 12vw, 150px)),
       rgba(239,246,250,0.58) 100%);
-
+    padding-block: clamp(72px, 9vw, 128px);
   }
   .story-grid{ display:grid; grid-template-columns: 1.3fr 0.86fr; gap: clamp(34px, 5vw, 82px); align-items:center; }
   .story-copy p{ margin-bottom: 20px; font-size: 1.08rem; color: var(--ink-soft); }
@@ -345,6 +387,25 @@
     width:100%; height:100%; object-fit: cover; object-position: 50% 42%;
     border-radius: 9px; box-shadow: 0 0 0 1px rgba(46,50,32,0.08);
   }
+
+  /* ---------- Matted-print frame — shared visual language ----------
+   A pressed-paper mat cradling the image like matted art.
+   Reused across story, venue, and gallery so the page speaks one language. */
+  .matte{
+    position: relative;
+    padding: 10px;
+    border-radius: 16px;
+    background: linear-gradient(158deg, var(--cream-warm), var(--cream-deep));
+    border: 1px solid var(--line-gold);
+    box-shadow: var(--shadow);
+  }
+  .matte > img,
+  .matte figure,
+  .matte .matte-img{
+    border-radius: 9px;
+    box-shadow: 0 0 0 1px rgba(46,50,32,0.08);
+  }
+
   /* Distilled chronology: three clean date anchors; the prose carries the story. */
   .story-timeline{
     list-style:none; margin: clamp(32px, 4vw, 44px) 0 0; padding: clamp(26px, 3vw, 32px) 0 0;
@@ -397,7 +458,7 @@
     position:absolute; top:50%; transform:translateY(-50%);
     left: calc(100% + var(--tl-gutter)/2 - 6px);
     width:12px; height:12px; border-radius:50%;
-    background: var(--peach); box-shadow: 0 0 0 4px var(--cream), 0 0 0 5px rgba(154,196,124,0.55);
+    background: var(--warm); box-shadow: 0 0 0 4px var(--cream), 0 0 0 5px var(--warm-soft);
   }
   .schedule-name{ font-size: 1.5rem; margin-bottom: 7px; font-family: var(--font-serif); font-weight:400; letter-spacing:-0.01em; }
   .schedule-desc{ font-size: var(--text-body); color: var(--ink-soft); max-width: 50ch; line-height:1.6; }
@@ -428,17 +489,21 @@
   }
   .venue-loc::before{
     content:''; flex:none; margin-top:0.42em; width:10px; height:10px; border-radius:50%;
-    background: var(--gold); box-shadow: 0 0 0 4px var(--cream-deep), 0 0 0 5px rgba(128,163,194,0.45);
+    background: var(--warm); box-shadow: 0 0 0 4px var(--cream-deep), 0 0 0 5px var(--warm-soft);
   }
+
   .venue-photo{
-    margin:0; aspect-ratio: 4/3; border-radius:12px; overflow:hidden;
-    background: var(--cream);
-    box-shadow: 0 0 0 1px rgba(46,50,32,0.08), 0 20px 44px -26px rgba(58,48,22,0.55);
+    margin:0; aspect-ratio: 4/3; overflow:hidden;
+    /* mat surround */
+    padding: 10px; border-radius: 16px;
+    background: linear-gradient(158deg, var(--cream-warm), var(--cream-deep));
+    border: 1px solid var(--line-gold);
+    box-shadow: var(--shadow);
   }
-  .venue-photo img{ display:block; width:100%; height:100%; object-fit:cover; object-position:50% 46%; }
-  @media (max-width: 820px){
-    .venue-card{ grid-template-columns: 1fr; }
-    .venue-photo{ order:-1; }
+  .venue-photo img{
+    width:100%; height:100%; object-fit:cover; object-position:50% 46%;
+    border-radius: 9px;                       /* inner bezel — was square */
+    box-shadow: 0 0 0 1px rgba(46,50,32,0.08);
   }
 
   /* Motion — the timeline draws itself in as the day unfolds; static + visible without JS/motion. */
@@ -672,9 +737,55 @@
   }
 
 /* ---------- Gallery ---------- */
-  .gallery-carousel{
-    position: relative;
-    margin-top: 46px;
+  /* ---------- Gallery — full-bleed scrapbook wall ---------- */
+  .gallery-wall{
+    margin-top: clamp(40px, 5vw, 64px);
+    display: grid;
+    gap: clamp(22px, 3.2vw, 46px);
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+    max-width: 1280px;
+    margin-inline: auto;
+  }
+  .gw-item{ margin: 0; position: relative; }
+  .gw-item figcaption{
+    margin-top: 12px; text-align: center;
+    font-family: var(--font-accent); font-style: italic;
+    font-size: 1.15rem; color: var(--gold-deep);
+  }
+  .gw-item .matte{ overflow: hidden; }
+  .gw-item img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Collage placement — overlapping columns + varied aspects + pinned tilt */
+  .gw-item--a{ grid-column: 1 / 6;  aspect-ratio: 4/3;  transform: rotate(-1.6deg); z-index:1; }
+  .gw-item--b{ grid-column: 7 / 11; aspect-ratio: 4/5;  transform: rotate(1.4deg);  margin-top: clamp(-40px,-4vw,-20px); z-index:2; }
+  .gw-item--c{ grid-column: 6 / 11; aspect-ratio: 4/3;  transform: rotate(1.1deg);  z-index:1; }
+  .gw-item--d{ grid-column: 2 / 7;  aspect-ratio: 5/4;  transform: rotate(-1.2deg); margin-top: clamp(-56px,-5vw,-28px); z-index:2; }
+
+  .gw-item .matte{ transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+  .gw-item:hover{ z-index: 5; }
+  .gw-item:hover .matte{ transform: translateY(-8px) scale(1.02); box-shadow: var(--shadow-lift); }
+
+  /* Tablet — simpler two-column mosaic */
+  @media (max-width: 820px){
+    .gallery-wall{ grid-template-columns: repeat(2, 1fr); gap: 26px 22px; }
+    .gw-item--a,.gw-item--b,.gw-item--c,.gw-item--d{
+      grid-column: auto; margin-top: 0;
+    }
+    .gw-item--a,.gw-item--c{ aspect-ratio: 4/3; }
+    .gw-item--b,.gw-item--d{ aspect-ratio: 4/5; }
+  }
+
+  /* Phone — single stacked column, prints straighten for calm reading */
+  @media (max-width: 520px){
+    .gallery-wall{ grid-template-columns: 1fr; }
+    .gw-item{ transform: none !important; }
+  }
+
+  /* Respect reduced motion — no tilt, no hover lift */
+  @media (prefers-reduced-motion: reduce){
+    .gw-item{ transform: none !important; }
+    .gw-item:hover .matte{ transform: none; }
   }
 
   .gallery-track{
@@ -697,30 +808,21 @@
     flex: 0 0 min(76vw, 520px);
     aspect-ratio: 4 / 3;
     scroll-snap-align: center;
-    border-radius: 18px;
+    /* matted-print surround (replaces the tinted gradient backgrounds) */
+    padding: 10px;
+    border-radius: 16px;
     overflow: hidden;
-    background: linear-gradient(150deg, rgba(128,163,194,0.6), rgba(67,98,126,0.5));
+    background: linear-gradient(158deg, var(--cream-warm), var(--cream-deep));
     border: 1px solid var(--line-gold);
     box-shadow: var(--shadow-soft), inset 0 1px 1px rgba(255,255,255,0.28);
   }
-
-  .gallery-slide:nth-child(3n+2){
-    background: linear-gradient(150deg, rgba(154,196,124,0.55), rgba(69,112,58,0.5));
-  }
-
-  .gallery-slide:nth-child(3n){
-    background: linear-gradient(150deg, rgba(128,163,194,0.55), rgba(150,190,120,0.5));
-  }
-
   .gallery-slide img{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 9px;                        /* inner bezel matches the mat */
+    box-shadow: 0 0 0 1px rgba(46,50,32,0.08);
     background: var(--cream);
-  }
-
-  .gallery-slide.gallery-slide--contain{
-    background: linear-gradient(150deg, rgba(239,246,250,0.95), rgba(220,234,245,0.9));
   }
 
   .gallery-slide.gallery-slide--contain img.gallery-img-contain{
@@ -741,6 +843,8 @@
     align-items: flex-end;
     justify-content: center;
     min-height: 45%;
+    left: 10px; right: 10px; bottom: 10px;
+    border-radius: 0 0 9px 9px;
     padding: 0 22px 24px;
     text-align: center;
     font-family: var(--font-accent);
@@ -815,11 +919,12 @@
     rgba(239,246,250,0.96) 0,
     rgba(239,246,250,0.94) 72%,
     rgba(173,189,172,0.18) 100%);
+  padding-block: clamp(72px, 9vw, 128px);
   }
-  #gallery .section-inner{
-    position: relative;
-    z-index: 1;
-  }
+  /* Gallery breaks the container for a wall-to-wall scrapbook */
+  #gallery .section-inner{ max-width: none; padding-inline: clamp(20px, 5vw, 72px); }
+  #gallery .section-inner > .reveal:first-child{ max-width: 1080px; margin-inline: auto; } /* keep the heading centred/contained */
+  
   #gallery::after{
     content:'';
     position:absolute;
@@ -1583,7 +1688,7 @@
     background: linear-gradient(180deg, rgba(173,189,172,0), rgba(239,246,250,0.62));
   }
   footer .foot-mark{ display:flex; justify-content:center; margin-bottom: 26px; }
-  footer .serif{ font-family: var(--font-serif); font-weight:400; font-size: clamp(1.9rem, 4vw, 2.7rem); margin-bottom: 12px; letter-spacing:-0.01em; }
+  footer .serif{ font-family: var(--font-script); font-weight:400; font-size: clamp(1.9rem, 4vw, 2.7rem); margin-bottom: 12px; letter-spacing:-0.01em; }
   footer .serif em{ font-family: var(--font-accent); font-style:italic; color: var(--terracotta); }
   footer .sub{ font-family: var(--font-sans); font-size: 0.72rem; letter-spacing: 0.24em; text-transform:uppercase; color: var(--gold-deep); }
 
@@ -2199,24 +2304,43 @@
 <!-- EVENT DETAILS -->
 <section id="details">
   <div class="section-inner">
-    <div class="reveal">
+          <div class="divider divider--stem">
+        <svg class="sprig" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M60 56 C 60 38, 58 20, 62 6" stroke="#5D9440" stroke-width="1.5" stroke-linecap="round"/>
+          <ellipse cx="52" cy="30" rx="6" ry="3.5" fill="#86B463" transform="rotate(-32 52 30)"/>
+          <ellipse cx="70" cy="22" rx="6" ry="3.5" fill="#86B463" transform="rotate(28 70 22)"/>
+          <ellipse cx="62" cy="6" rx="5" ry="7.5" fill="#80A3C2"/>
+        </svg>
+      </div>
+<div class="reveal">
       <span class="eyebrow">Event Details</span>
       <h2 class="section-title serif">The Day</h2>
       <p>Here's how the day will unfold. Times are approximate for now and will be confirmed closer to the date.</p>
     </div>
-
     <div class="schedule reveal">
       <div class="schedule-item">
-        <div class="schedule-time">~1:30 PM</div>
-        <div><div class="schedule-name">Ceremony</div><div class="schedule-desc">We say our vows at Southdowns Manor. Please arrive with time to be seated.</div></div>
+        <div class="schedule-time">1:00 PM</div>
+        <div><div class="schedule-name">Guests Arrive</div><div class="schedule-desc">Please arrive from this time to find your seat and settle in before the ceremony begins</div></div>
       </div>
       <div class="schedule-item">
-        <div class="schedule-time">~3–4 PM</div>
-        <div><div class="schedule-name">Wedding Breakfast</div><div class="schedule-desc">Drinks, canapés, and the wedding breakfast for our ceremony guests.</div></div>
+        <div class="schedule-time">1:30 PM</div>
+        <div><div class="schedule-name">Ceremony</div><div class="schedule-desc">We say our vows at Southdowns Manor. Please be seated a little beforehand.</div></div>
       </div>
       <div class="schedule-item">
-        <div class="schedule-time">~7 PM</div>
-        <div><div class="schedule-name">Evening Reception</div><div class="schedule-desc">Evening guests join us for dancing and celebrating into the night.</div></div>
+        <div class="schedule-time">2:00 PM</div>
+        <div><div class="schedule-name">Drinks Reception</div><div class="schedule-desc">Celebrate with us over drinks and canapés as we begin married life.</div></div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">4:00 PM</div>
+        <div><div class="schedule-name">Wedding Breakfast</div><div class="schedule-desc">Join us for a relaxed meal together to mark the occasion.</div></div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">6:00 PM</div>
+        <div><div class="schedule-name">Speeches</div><div class="schedule-desc">Raise a glass as our loved ones share a few heartfelt words.</div></div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">7:00 PM</div>
+        <div><div class="schedule-name">Evening Reception</div><div class="schedule-desc">Evening guests join us as we dance and celebrate into the night.</div></div>
       </div>
     </div>
 
@@ -2238,15 +2362,19 @@
 <!-- DRESS CODE -->
 <section id="dress">
   <div class="section-inner">
-    <div class="divider">
-      <svg class="sprig" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M60 55 C 60 40, 40 30, 20 20" stroke="#5D9440" stroke-width="1.5"/>
-        <path d="M60 55 C 60 40, 80 30, 100 20" stroke="#5D9440" stroke-width="1.5"/>
-        <ellipse cx="20" cy="18" rx="7" ry="4" fill="#86B463" transform="rotate(-30 20 18)"/>
-        <ellipse cx="100" cy="18" rx="7" ry="4" fill="#86B463" transform="rotate(30 100 18)"/>
-        <ellipse cx="60" cy="10" rx="6" ry="9" fill="#80A3C2"/>
-      </svg>
-    </div>
+    <div class="divider divider--bloom">
+<svg class="sprig" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M60 56 C 60 42, 44 34, 26 26" stroke="#5D9440" stroke-width="1.5"/>
+  <path d="M60 56 C 60 42, 76 34, 94 26" stroke="#5D9440" stroke-width="1.5"/>
+  <path d="M60 56 C 60 44, 60 30, 60 16" stroke="#5D9440" stroke-width="1.5"/>
+  <ellipse cx="26" cy="24" rx="6.5" ry="3.5" fill="#86B463" transform="rotate(-30 26 24)"/>
+  <ellipse cx="94" cy="24" rx="6.5" ry="3.5" fill="#86B463" transform="rotate(30 94 24)"/>
+  <circle cx="42" cy="20" r="5" fill="#ECA6B6"/>
+  <circle cx="78" cy="20" r="5" fill="#F2C230"/>
+  <ellipse cx="60" cy="12" rx="6" ry="9" fill="#80A3C2"/>
+  <circle cx="60" cy="12" r="2.4" fill="#FBF2D9"/>
+</svg>
+</div>
     <div class="dress-head" data-dr>
       <span class="eyebrow">Dress Code</span>
       <h2 class="section-title serif">Garden Formal</h2>
@@ -2270,7 +2398,15 @@
 <!-- TRAVEL & STAY -->
 <section id="travel">
   <div class="section-inner">
-    <div data-tr>
+          <div class="divider divider--stem">
+        <svg class="sprig" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M60 56 C 60 38, 58 20, 62 6" stroke="#5D9440" stroke-width="1.5" stroke-linecap="round"/>
+          <ellipse cx="52" cy="30" rx="6" ry="3.5" fill="#86B463" transform="rotate(-32 52 30)"/>
+          <ellipse cx="70" cy="22" rx="6" ry="3.5" fill="#86B463" transform="rotate(28 70 22)"/>
+          <ellipse cx="62" cy="6" rx="5" ry="7.5" fill="#80A3C2"/>
+        </svg>
+      </div>
+<div data-tr>
       <span class="eyebrow">Travel &amp; Stay</span>
       <h2 class="section-title serif">Getting There &amp; Where to Stay</h2>
       <p class="travel-intro">Southdowns Manor sits deep in the West Sussex countryside, so here's everything you need to arrive relaxed and find a bed nearby — no hunting across ten browser tabs required.</p>
@@ -2379,16 +2515,6 @@
                 <p class="stay-desc">A village pub-with-rooms in Stedham — the nearest place to lay your head after the party.</p>
               </div>
               <div class="stay">
-                <div class="stay-name"><a href="https://www.theangelmidhurst.co.uk/" target="_blank" rel="noopener noreferrer">The Angel Hotel<span class="arrow" aria-hidden="true">&#8599;</span><span class="sr-only">(opens in a new tab)</span></a></div>
-                <div class="stay-meta">Midhurst · 10 min</div>
-                <p class="stay-desc">A friendly, family-run 37-room hotel in Midhurst — a popular base for wedding parties.</p>
-              </div>
-              <div class="stay">
-                <div class="stay-name"><a href="https://www.swaninnmidhurst.co.uk/" target="_blank" rel="noopener noreferrer">The Swan Inn<span class="arrow" aria-hidden="true">&#8599;</span><span class="sr-only">(opens in a new tab)</span></a></div>
-                <div class="stay-meta">Midhurst · 10 min</div>
-                <p class="stay-desc">A top-rated inn, walkable to Midhurst's restaurants and pubs.</p>
-              </div>
-              <div class="stay">
                 <div class="stay-name"><a href="https://www.elstedinn.com/" target="_blank" rel="noopener noreferrer">Rooms at The Elsted Inn<span class="arrow" aria-hidden="true">&#8599;</span><span class="sr-only">(opens in a new tab)</span></a></div>
                 <div class="stay-meta">Elsted · 8 min</div>
                 <p class="stay-desc">A charming country pub-with-rooms, closer than most Midhurst options.</p>
@@ -2428,10 +2554,6 @@
             </div>
           </div>
 
-        </div>
-        <div class="note note--pending" style="margin-top:26px;">
-          <span class="note-label">Group rate · confirming soon</span>
-          We're checking whether we can arrange a room block at one or two of these — if so, we'll add a booking code right here.
         </div>
       </div>
 
@@ -2480,17 +2602,31 @@
       <span class="eyebrow">Gallery</span>
       <h2 class="section-title serif">A Few Moments</h2>
     </div>
-    <div class="gallery-carousel reveal" aria-label="Photo carousel">
-      <button class="gallery-btn gallery-btn--prev" type="button" aria-label="Previous gallery image" aria-controls="galleryTrack">&#8592;</button>
-      <div class="gallery-track" id="galleryTrack" tabindex="0">
-        <figure class="gallery-slide"><img src="Assets/Shadow-Photo.png" alt="Our Story"><figcaption>Our Story</figcaption></figure>
-        <figure class="gallery-slide gallery-slide--contain"><img src="Assets/Proposal.png" alt="The Proposal"><figcaption>The Proposal</figcaption></figure>
-        <figure class="gallery-slide"><img src="Assets/Vinyard.png" alt="Together"><figcaption>Together</figcaption></figure>
-        <figure class="gallery-slide"><img src="Assets/Waterfall.png" alt="Fjords"><figcaption>Fjords</figcaption></figure>
-        <figure class="gallery-slide"><img src="Assets/Family-Photo.png" alt="Family"><figcaption>Family</figcaption></figure>
-        <figure class="gallery-slide"><img src="Assets/Friends-Photo.png" alt="Friends"><figcaption>Friends</figcaption></figure>
-      </div>
-      <button class="gallery-btn gallery-btn--next" type="button" aria-label="Next gallery image" aria-controls="galleryTrack">&#8594;</button>
+    <div class="gallery-wall reveal" aria-label="A few of our favourite moments">
+      <figure class="gw-item gw-item--a">
+        <div class="matte">
+          <img src="Assets/Shadow-Photo.png" alt="Our story" loading="lazy" decoding="async">
+        </div>
+        <figcaption>Our Story</figcaption>
+      </figure>
+      <figure class="gw-item gw-item--b">
+        <div class="matte">
+          <img src="Assets/Proposal.png" alt="The proposal" loading="lazy" decoding="async">
+        </div>
+        <figcaption>The Proposal</figcaption>
+      </figure>
+      <figure class="gw-item gw-item--c">
+        <div class="matte">
+          <img src="Assets/Vinyard.png" alt="Together" loading="lazy" decoding="async">
+        </div>
+        <figcaption>Together</figcaption>
+      </figure>
+      <figure class="gw-item gw-item--d">
+        <div class="matte">
+          <img src="Assets/Waterfall.png" alt="The fjords" loading="lazy" decoding="async">
+        </div>
+        <figcaption>Fjords</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -2498,15 +2634,19 @@
 <!-- HONEYMOON FUND -->
 <section id="honeymoon">
   <div class="section-inner">
-    <div class="divider">
-      <svg class="sprig" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M60 55 C 60 40, 40 30, 20 20" stroke="#5D9440" stroke-width="1.5"/>
-        <path d="M60 55 C 60 40, 80 30, 100 20" stroke="#5D9440" stroke-width="1.5"/>
-        <ellipse cx="20" cy="18" rx="7" ry="4" fill="#86B463" transform="rotate(-30 20 18)"/>
-        <ellipse cx="100" cy="18" rx="7" ry="4" fill="#86B463" transform="rotate(30 100 18)"/>
-        <ellipse cx="60" cy="10" rx="6" ry="9" fill="#80A3C2"/>
-      </svg>
-    </div>
+    <div class="divider divider--bloom">
+<svg class="sprig" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M60 56 C 60 42, 44 34, 26 26" stroke="#5D9440" stroke-width="1.5"/>
+  <path d="M60 56 C 60 42, 76 34, 94 26" stroke="#5D9440" stroke-width="1.5"/>
+  <path d="M60 56 C 60 44, 60 30, 60 16" stroke="#5D9440" stroke-width="1.5"/>
+  <ellipse cx="26" cy="24" rx="6.5" ry="3.5" fill="#86B463" transform="rotate(-30 26 24)"/>
+  <ellipse cx="94" cy="24" rx="6.5" ry="3.5" fill="#86B463" transform="rotate(30 94 24)"/>
+  <circle cx="42" cy="20" r="5" fill="#ECA6B6"/>
+  <circle cx="78" cy="20" r="5" fill="#F2C230"/>
+  <ellipse cx="60" cy="12" rx="6" ry="9" fill="#80A3C2"/>
+  <circle cx="60" cy="12" r="2.4" fill="#FBF2D9"/>
+</svg>
+</div>
     <div class="honeymoon-head" data-hm>
       <span class="eyebrow">With Love</span>
       <h2 class="section-title serif">Honeymoon Fund</h2>
@@ -2783,55 +2923,6 @@
   const navLinks = document.getElementById('navLinks');
   navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-  // Gallery carousel
-  (function initGalleryCarousel(){
-    const track = document.getElementById('galleryTrack');
-    if (!track) return;
-
-    const prev = document.querySelector('.gallery-btn--prev');
-    const next = document.querySelector('.gallery-btn--next');
-
-    function getScrollAmount(){
-      const slide = track.querySelector('.gallery-slide');
-      if (!slide) return track.clientWidth;
-
-      const styles = window.getComputedStyle(track);
-      const gap = parseFloat(styles.columnGap || styles.gap || '18') || 18;
-
-      return slide.getBoundingClientRect().width + gap;
-    }
-
-    function updateButtons(){
-      if (!prev || !next) return;
-
-      const maxScroll = track.scrollWidth - track.clientWidth;
-      const current = track.scrollLeft;
-
-      prev.disabled = current <= 4;
-      next.disabled = current >= maxScroll - 4;
-    }
-
-    function scrollGallery(direction){
-      track.scrollBy({
-        left: direction * getScrollAmount(),
-        behavior: 'smooth'
-      });
-    }
-
-    if (prev) {
-      prev.addEventListener('click', () => scrollGallery(-1));
-    }
-
-    if (next) {
-      next.addEventListener('click', () => scrollGallery(1));
-    }
-
-    track.addEventListener('scroll', updateButtons, { passive: true });
-    window.addEventListener('resize', updateButtons, { passive: true });
-
-    updateButtons();
-  })();
 
   // Countdown to 29 April 2027, 13:30 local
   const weddingDate = new Date('2027-04-29T13:30:00');
@@ -3532,6 +3623,45 @@
     var bottom = veil.querySelector('.veil-bottom');
     if (bottom) bottom.addEventListener('animationend', finish, { once:true });
     setTimeout(finish, 3000);
+  })();
+</script>
+
+<script>
+  (function () {
+    const hero = document.querySelector('.hero');
+    const heroContent = document.querySelector('.hero-content');
+    const frame = document.querySelector('.hero-frame');
+    if (!hero) return;
+
+    let targetX = 0;
+    let targetY = 0;
+
+    hero.addEventListener('mousemove', (e) => {
+      targetX = (e.clientX / window.innerWidth - 0.5);
+      targetY = (e.clientY / window.innerHeight - 0.5);
+
+      // Frame reacts immediately to the pointer
+      if (frame) {
+        frame.style.transform = `rotateY(${targetX * 8}deg) rotateX(${targetY * -6}deg)`;
+      }
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      targetX = 0;
+      targetY = 0;
+      if (frame) {
+        frame.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      }
+    });
+
+    // Hero content eases toward the target every frame
+    function animate() {
+      if (heroContent) {
+        heroContent.style.transform = `rotateY(${targetX * 6}deg) rotateX(${targetY * -4}deg)`;
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
   })();
 </script>
 
